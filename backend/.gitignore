@@ -1,0 +1,18 @@
+# Dependencias
+node_modules/
+
+# Directorio de compilación
+dist/
+
+# Archivos de configuración de ambiente
+.env
+
+# Archivos de registro
+npm-debug.log
+yarn-error.log
+
+package-lock.json
+
+# Directorios y archivos específicos de sistemas operativos
+.DS_Store
+Thumbs.db
