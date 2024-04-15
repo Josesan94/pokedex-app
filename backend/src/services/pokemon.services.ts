@@ -21,3 +21,13 @@ export const fetchPokemonDetails = async (pokemonId: string) => {
   }
 };
 
+export const searchPokemons = async (query:string) => {
+  try {
+    const {data} = await axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`)
+    return [data]
+  } catch (error) {
+    console.error('Error searching Pokemons:', error);
+    throw new Error('Failed to search Pokemons');
+  }
+};
+

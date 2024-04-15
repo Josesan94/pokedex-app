@@ -20,3 +20,13 @@ export const getPokemonDetails = async (req: Request, res: Response) => {
         res.status(500).send(error.message);
     }
 }
+
+export const searchPokemons = async (req: Request, res: Response) => {
+    const { query } = req.query;
+    try {
+        const pokemons = await pokemonService.searchPokemons(query as string);
+        res.json(pokemons);
+    } catch (error:any) {
+        res.status(404).send(error.message);
+    }
+};
