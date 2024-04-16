@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 
-export const fetchPokemons = async () => {
+export const fetchPokemons = async (limit: number = 5, offset: number = 0) => {
     try {
-      const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=50');
+      const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
       return data.results;
     } catch(error) {
       console.error('Error fetching Pokemons:', error);
