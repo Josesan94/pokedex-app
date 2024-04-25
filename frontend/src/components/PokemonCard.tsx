@@ -28,7 +28,7 @@ const PokemonCard = ({ pokemonUrl }:PokemonCardInterface) => {
 
   return (
     <>
-      <Card onClick={handleClickOpen} className=" cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 bg-white shadow-lg rounded-lg overflow-hidden">
+      <Card onClick={handleClickOpen} className=" max-h-[100%] cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-90 bg-white shadow-lg rounded-lg overflow-hidden">
         <CardMedia
           component="img"
           image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${details.id}.png`}
