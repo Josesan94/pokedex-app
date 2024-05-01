@@ -1,17 +1,15 @@
 import { Request, Response } from 'express';
 import * as pokemonService from '../services/pokemon.services'
 
-type dto = {
-    limit:number;
-    offset:number
-}
 
 export const listPokemons = async (req: Request, res: Response) => {
     const { limit, offset }:any = req.query;
     try {
-        const pokemons = await pokemonService.fetchPokemons(limit, offset);
-        res.json(pokemons);
+        const { results, total } = await pokemonService.fetchPokemons(limit, offset);
+        const totalPages = Math.ceil(total / limit)
+        res.json({ pokemons: results, total, totalPages, limit, offset });
     } catch (error:any) {
+        console.error('Error on fetching Pokemons:', error);
         res.status(500).send(error.message);
     }
 };
