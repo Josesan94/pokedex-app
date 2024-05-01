@@ -7,6 +7,8 @@ import SearchBar from '@/components/SearchBar';
 import { Typography, Box, CircularProgress, Grid, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
+import Image from 'next/image';
+import PokedexImage from '../../assets/Pokedex_logo.png'
 
 const fetcher = async (url: string)  => {
     const response = await axios.get(url)
@@ -29,7 +31,8 @@ const Homepage: NextPage = () => {
       : `http://localhost:3001/api/pokemons?limit=${limit}&offset=${offset}`;
 
       const { data, error, isValidating } = useSWR(url, fetcher, { revalidateOnFocus: false });
-  
+
+      const pokemons = data?.pokemons ? data.pokemons : data; // Handle both structures
 
       const handleSearch = () => {
         setTriggerSearch(true); // Re-activa la búsqueda cuando se hace clic en cualquier botón de búsqueda
@@ -56,7 +59,14 @@ const Homepage: NextPage = () => {
 
 
     return (
-      <div className='bg-white w-[100%] flex flex-col items-center pb-10'>
+      <div className='bg-white w-[100%] flex flex-col items-center pb-10 mt-2'>
+        <Image
+          src={PokedexImage}
+          alt="photo"
+          width={200}
+          height={200}
+          className='mt-5'
+        />
         <h1 className="col-span-full text-white text-3xl text-center mb-5">Pokédex</h1>
         <div className='flex flex-row gap-3'>
           <SearchBar value={nameQuery} placeholder="Search by Name" onChange={setNameQuery} onSearch={handleSearch} onClear={handleClear} />
@@ -75,7 +85,7 @@ const Homepage: NextPage = () => {
         </div>
         )}
         <Grid className="w-[80%] p-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4  min-h-screen">
-          {data && data?.pokemons?.map((pokemon: any) => (
+          {pokemons && pokemons?.map((pokemon: any) => (
             <PokemonCard key={pokemon.name} pokemonUrl={pokemon.url} />
           ))}
         </Grid>
