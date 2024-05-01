@@ -1,10 +1,16 @@
 import axios from 'axios';
 
 
-export const fetchPokemons = async (limit: number = 5, offset: number = 0) => {
+export const fetchPokemons = async (limit: number, offset: number = 0) => {
     try {
       const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
-      return data.results;
+      console.log(data.count)
+      return {
+        results: data.results,  // La lista de pokemons
+        total: data.count,      // Total de pokemons disponibles
+        limit,                  // Limite de pokemons por página
+        offset                  // Offset actual
+    };
     } catch(error) {
       console.error('Error fetching Pokemons:', error);
       throw new Error('Failed to fetch Pokemons');
