@@ -6,6 +6,12 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    'bg-water', 'bg-grass', 'bg-poison', 'bg-fire', 'bg-electric',
+  'bg-normal', 'bg-ice', 'bg-fighting', 'bg-ground', 'bg-flying',
+  'bg-psychic', 'bg-bug', 'bg-rock', 'bg-ghost', 'bg-dark',
+  'bg-dragon', 'bg-steel', 'bg-fairy'
+  ],
   theme: {
     extend: {
       backgroundImage: {
