@@ -26,19 +26,22 @@ const PokemonCard = ({ pokemonUrl }:PokemonCardInterface) => {
   if (isLoading || !details) return <div>Loading details...</div>;
 
 
+  const imageUrl = details.sprites?.other?.dream_world?.front_default ? 
+                    details.sprites?.other?.dream_world?.front_default : 
+                    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${details.id}.png`
+
   return (
     <>
-    <div className=''>
+    <div className='mt-5 mb-2'>
 			<div onClick={handleClickOpen} className='cursor-pointer hover:-translate-y-2 hover:scale-110 hover:bg-indigo-500 duration-300 bg-gray-200 flex items-center justify-center rounded-xl h-[250px]'>
 				<Image
-					src={details.sprites.other.dream_world.front_default}
+					src={imageUrl}
 					alt={`Pokemon ${details.name}`}
           width={200}
-          height={100}
+          height={200}
 				/>
 			</div>
-			<div className='p-5'>
-				<Typography className='block text-black mb-5'>N° {details.id}</Typography>
+			<div className='pt-2'>
 				<Typography variant="h4"><strong>{details.name}</strong></Typography>
 				<div className='flex gap-2 border-r-3 text-black'>
 					{details.types.map((type:any) => (
