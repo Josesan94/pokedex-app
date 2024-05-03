@@ -20,7 +20,33 @@ export const fetchPokemons = async (limit: number, offset: number = 0) => {
 export const fetchPokemonDetails = async (pokemonId: string) => {
   try {
       const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-      return data;
+      // Extraemos solo la información que necesitamos para el frontend
+      const details = {
+        name: data.name,
+        id: data.id,
+        sprites: {
+            front_default: data.sprites.front_default,
+            other: {
+                official_artwork: data.sprites.other['official-artwork'].front_default,
+                dream_world: data.sprites.other.dream_world.front_default
+            }
+        },
+        types: data.types.map((type: any) => ({
+            slot: type.slot,
+            type: type.type.name
+        })),
+        stats: data.stats.map((stat: any) => ({
+            stat: {
+                name: stat.stat.name,
+                base_stat: stat.base_stat
+            }
+        })),
+        abilities: data.abilities.map((ability: any) => ({
+            ability: ability.ability.name
+        }))
+    };
+
+    return details;
   } catch (error) {
       console.error('Error fetching Pokemon details:', error);
       throw new Error('Failed to fetch Pokemon details');
