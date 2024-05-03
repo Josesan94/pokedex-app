@@ -25,25 +25,6 @@ export const getPokemonDetails = async (req: Request, res: Response) => {
     }
 }
 
-export const getPokemonsByName = async (req: Request, res: Response) => {
-    const { name } = req.params;
-    try {
-        const pokemons = await pokemonService.searchPokemonByName(name);
-        res.json(pokemons);
-    } catch (error:any) {
-        res.status(404).send(error.message);
-    }
-};
-
-export const getPokemonsByType = async (req:Request, res:Response) => {
-    const {type} = req.params;
-    try {
-        const results = await pokemonService.searchPokemonByType(type);
-        res.json(results)
-    } catch(error:any) {
-        res.status(500).send(error.message);
-    }
-}
 
 // Modificar uno de los controladores existentes para aceptar ambos parámetros
 export const getPokemons = async (req: Request, res: Response) => {
