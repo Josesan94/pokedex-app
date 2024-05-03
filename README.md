@@ -1,10 +1,12 @@
+Proyecto Pokedex
+
 Instrucciones para levantar el proyecto:
 - Clonar el repositorio
 
 el repositorio se divide entre entre las carpetas backend que contiene el backend de la aplicacion, y la carpeta frontend que contiene el Frontend de la aplicacion.
 
 Para levantar el backend:
--npm install
+- npm install
 - npm run dev
 
 
