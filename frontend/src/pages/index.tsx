@@ -69,12 +69,12 @@ const Homepage: NextPage = () => {
         />
         <h1 className="col-span-full text-white text-3xl text-center mb-5">Pokédex</h1>
         <div className='flex flex-row gap-3'>
-          <SearchBar value={nameQuery} placeholder="Search by Name" onChange={setNameQuery} onSearch={handleSearch} onClear={handleClear} />
-          <SearchBar value={typeQuery} placeholder="Search by Type" onChange={setTypeQuery} onSearch={handleSearch} onClear={handleClear} />
-          <Button variant="contained" color="primary" onClick={handleSearch}>
+          <SearchBar value={nameQuery} placeholder="Search by Name" onChange={setNameQuery}/>
+          <SearchBar value={typeQuery} placeholder="Search by Type" onChange={setTypeQuery} />
+          <Button aria-label="Search" variant="contained" color="primary" onClick={handleSearch}>
             <SearchIcon />
           </Button>
-          <Button variant="contained" color="secondary" onClick={handleClear}>
+          <Button aria-label="Clear" variant="contained" color="secondary" onClick={handleClear}>
             <ClearIcon />
           </Button>
         </div>
