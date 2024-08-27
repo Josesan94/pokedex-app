@@ -2,7 +2,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "ts-node src/server.ts"
+    "dev": "ts-node src/server.ts",
+    "generate-token": "ts-node src/controllers/generateToken.controller.ts"
   },
   "dependencies": {
     "axios": "^1.6.8",

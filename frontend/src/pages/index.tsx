@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import useSWR from 'swr';
 import axios from 'axios';
@@ -9,11 +9,18 @@ import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import Image from 'next/image';
 import PokedexImage from '../../assets/Pokedex_logo.png'
+import { fetchToken } from '@/services/fetchToken';
 
-const fetcher = async (url: string)  => {
-    const response = await axios.get(url)
-    const data = response.data
-    return data;
+const fetcher = async (url: string) => {
+  const token = localStorage.getItem('jwtToken'); // Obtener el token almacenado
+  const headers = token ? { Authorization: `Bearer ${token}` } : {};
+  try {
+    const response = await axios.get(url, { headers });
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch:', error);
+    throw new Error('Failed to fetch data');
+  }
 }
 
 const Homepage: NextPage = () => {
@@ -23,6 +30,11 @@ const Homepage: NextPage = () => {
     const [triggerSearch, setTriggerSearch] = useState<boolean>(false);
     const limit:number = 5;
     const offset =(page -1) * limit
+
+
+    useEffect(() => {
+      fetchToken()
+    }, [])
 
 
   // Construir la URL basada en los estados de búsqueda

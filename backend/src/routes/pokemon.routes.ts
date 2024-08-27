@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import * as pokemonController from '../controllers/pokemon.controller';
 import authenticateToken from '../middlewares/auth.middleware';
+import * as tokenController from '../controllers/generateToken.controller';
 
 const router = Router();
 
@@ -155,6 +156,9 @@ router.get('/pokemon/:pokemonId',authenticateToken, pokemonController.getPokemon
  *         description: Error interno del servidor.
  */
 router.get('/search', authenticateToken, pokemonController.getPokemons);
+
+
+router.get('/generate-token', tokenController.generateToken )
 
 
 

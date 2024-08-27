@@ -9,15 +9,7 @@ const SearchBar = ({ value, onChange, onSearch, onClear, placeholder  }: SearchB
     onChange(event.target.value); // Solo actualiza el valor del input
   };
 
-  const handleSearch = () => {
-    onSearch(value); // Activa la búsqueda con el valor actual
-  };
 
-  const handleClear = () => {
-        onClear(); // Función para limpiar la búsqueda
-  };
-
-  
     return (
         <div className="flex flex-row space-x-2">
             <Input
