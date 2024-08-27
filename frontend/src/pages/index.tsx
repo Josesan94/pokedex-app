@@ -39,8 +39,8 @@ const Homepage: NextPage = () => {
 
   // Construir la URL basada en los estados de búsqueda
     const url = triggerSearch
-      ? `http://localhost:3001/api/search?name=${nameQuery}&type=${typeQuery}`
-      : `http://localhost:3001/api/pokemons?limit=${limit}&offset=${offset}`;
+      ? `${process.env.NEXT_PUBLIC_ENPOINT_BACKEND}/search?name=${nameQuery}&type=${typeQuery}`
+      : `${process.env.NEXT_PUBLIC_ENPOINT_BACKEND}/pokemons?limit=${limit}&offset=${offset}`;
 
       const { data, error, isValidating } = useSWR(url, fetcher, { revalidateOnFocus: false });
 
