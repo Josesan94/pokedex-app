@@ -86,7 +86,7 @@ const Homepage: NextPage = () => {
           <Button variant="contained" color="primary" onClick={handleSearch}>
             <SearchIcon />
           </Button>
-          <Button variant="contained" color="secondary" onClick={handleClear}>
+          <Button variant="contained" color="secondary" aria-label="Clear" onClick={handleClear}>
             <ClearIcon />
           </Button>
         </div>
